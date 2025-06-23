@@ -1,56 +1,113 @@
-/* style.css */
+/* Dark Theme CSS for json-parser (index.html) */
+
+/* Global background and text */
 body {
-    font-family: 'Fira Mono', 'Consolas', monospace;
-    background: linear-gradient(135deg, #232526 0%, #414345 100%);
-    color: #f3f3f3;
-    padding: 40px 0;
-    margin: 0;
-    min-height: 100vh;
+  background: #181a1b;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-#drop-zone {
-    border: 2.5px dashed #00ff99;
-    padding: 50px 0;
-    margin: 30px auto 20px auto;
-    width: 60%;
-    background: rgba(43, 43, 43, 0.95);
-    cursor: pointer;
-    border-radius: 14px;
-    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    font-size: 1.2rem;
-    color: #baffd9;
-    letter-spacing: 0.5px;
+/* Links */
+a {
+  color: #7bc7ff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #4fa3d1;
+  text-decoration: underline;
 }
 
-#drop-zone.hover {
-    border-color: #00e6d0;
-    background: rgba(43, 43, 43, 1);
-    box-shadow: 0 6px 32px rgba(0,255,153,0.10);
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #fff;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
 }
 
-#output {
-    margin-top: 35px;
-    text-align: left;
-    background: rgba(45, 45, 45, 0.98);
-    padding: 24px 28px;
-    border-radius: 10px;
-    white-space: pre-wrap;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-    font-size: 1.05rem;
-    color: #e0ffe7;
-    overflow-x: auto;
+/* Containers */
+.container, .main, .content {
+  background: #23272a;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  padding: 2em;
+  margin: 2em auto;
+  max-width: 800px;
 }
 
-/* Optional: Add a subtle fade-in animation */
-body, #drop-zone, #output {
-    animation: fadeIn 0.7s;
+/* Inputs and Textareas */
+input, textarea, select {
+  background: #2c2f34;
+  color: #e0e0e0;
+  border: 1px solid #3a3f44;
+  border-radius: 4px;
+  padding: 0.5em;
+  font-size: 1em;
+  margin-bottom: 1em;
+  transition: border 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #7bc7ff;
+  outline: none;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
+/* Buttons */
+button, input[type="submit"] {
+  background: #31373d;
+  color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  padding: 0.7em 1.5em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover, input[type="submit"]:hover {
+  background: #7bc7ff;
+  color: #181a1b;
+}
+
+/* Code blocks */
+pre, code {
+  background: #23272a;
+  color: #7bc7ff;
+  border-radius: 4px;
+  padding: 0.5em;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+  font-size: 0.96em;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #23272a;
+  color: #e0e0e0;
+}
+th, td {
+  border: 1px solid #343a40;
+  padding: 0.75em 1em;
+}
+th {
+  background: #272b30;
+  color: #7bc7ff;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #23272a;
+}
+::-webkit-scrollbar-thumb {
+  background: #31373d;
+  border-radius: 8px;
+}
+
+/* Selection */
+::selection {
+  background: #7bc7ff;
+  color: #181a1b;
 }
