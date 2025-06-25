@@ -1,43 +1,53 @@
+__all__ = [
+    "JsonParserError",
+    "UnexpectedTokenError",
+    "UnterminatedStringError",
+    "InvalidNumberError",
+    "JsonSyntaxError",
+]
+
+def _safe_repr(value, max_length=100):
+    """Safely represent a value for error messages, truncating if necessary."""
+    try:
+        result = repr(value)
+    except Exception:
+        result = "<unrepresentable>"
+    if len(result) > max_length:
+        result = result[:max_length - 3] + "..."
+    return result
+
 class JsonParserError(Exception):
-    """Base class for all JSON parser errors."""
+    """Base exception for JSON parser errors."""
     pass
 
-
 class UnexpectedTokenError(JsonParserError):
+    """Raised when an unexpected token is encountered."""
     def __init__(self, expected, actual):
-        # Avoid leaking sensitive data from token values
         actual_type = getattr(actual, 'type', '<unknown>')
         actual_value = getattr(actual, 'value', '<unknown>')
-        # Limit the length of value to prevent log injection or excessive output
-        safe_value = str(actual_value)
-        if len(safe_value) > 100:
-            safe_value = safe_value[:97] + '...'
+        safe_value = _safe_repr(actual_value)
         message = (
-            f"Expected token '{expected}', but got '{actual_type}' with value {safe_value!r}"
+            f"Expected token '{_safe_repr(expected)}', "
+            f"but got '{_safe_repr(actual_type)}' with value {safe_value}"
         )
         super().__init__(message)
 
-class JsonSyntaxError(Exception):
-    pass
-
 class UnterminatedStringError(JsonParserError):
+    """Raised when a string literal is not terminated."""
     def __init__(self):
         super().__init__("Unterminated string literal found while parsing.")
 
-
 class InvalidNumberError(JsonParserError):
+    """Raised when an invalid number format is encountered."""
     def __init__(self, value):
-        # Avoid leaking potentially sensitive or very large values
-        safe_value = str(value)
-        if len(safe_value) > 100:
-            safe_value = safe_value[:97] + '...'
+        safe_value = _safe_repr(value)
         super().__init__(f"Invalid number format: {safe_value}")
 
-
 class JsonSyntaxError(JsonParserError):
-    def __init__(self, message):
-        # Limit error message length to prevent abuse
-        safe_message = str(message)
-        if len(safe_message) > 200:
-            safe_message = safe_message[:197] + '...'
-        super().__init__(f"Syntax Error: {safe_message}")
+    """Raised for generic syntax errors in JSON."""
+    def __init__(self, message, line=None):
+        safe_message = _safe_repr(message, max_length=200)
+        full_message = f"Syntax Error: {safe_message}"
+        if line is not None:
+            full_message += f" (line {line})"
+        super().__init__(full_message)

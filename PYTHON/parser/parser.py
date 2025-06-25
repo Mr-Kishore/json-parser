@@ -3,10 +3,14 @@ from .exceptions import UnexpectedTokenError, JsonSyntaxError
 
 class Parser:
     def __init__(self, tokens):
+        if not isinstance(tokens, list) or not all(isinstance(t, Token) for t in tokens):
+            raise ValueError("Tokens must be a list of Token objects.")
         self.tokens = tokens
         self.position = 0
 
     def parse(self):
+        if not self.tokens:
+            raise JsonSyntaxError("No tokens to parse.")
         value = self.parse_value()
         self.expect("EOF")
         return value
@@ -31,7 +35,7 @@ class Parser:
         elif current.type == "LBRACKET":
             return self.parse_array()
         else:
-            raise JsonSyntaxError(f"Unexpected token: {current}")
+            raise JsonSyntaxError("Unexpected token type.")
 
     def parse_object(self):
         obj = {}
@@ -53,7 +57,7 @@ class Parser:
                 self.advance()
                 break
             else:
-                raise JsonSyntaxError("Expected ',' or '}' in object")
+                raise JsonSyntaxError("Expected ',' or '}' in object.")
 
         return obj
 
@@ -75,7 +79,7 @@ class Parser:
                 self.advance()
                 break
             else:
-                raise JsonSyntaxError("Expected ',' or ']' in array")
+                raise JsonSyntaxError("Expected ',' or ']' in array.")
 
         return arr
 
@@ -87,7 +91,10 @@ class Parser:
         return token
 
     def advance(self):
-        self.position += 1
+        if self.position < len(self.tokens):
+            self.position += 1
 
     def current_token(self):
-        return self.tokens[self.position] if self.position < len(self.tokens) else Token("EOF", None)
+        if self.position < len(self.tokens):
+            return self.tokens[self.position]
+        return Token("EOF", None)
