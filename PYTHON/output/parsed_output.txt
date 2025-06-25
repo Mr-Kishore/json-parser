@@ -1,0 +1,2 @@
+Parsed JSON Object:
+{'fruit': 'Apple', 'size': 'Large', 'color': 'Red'}

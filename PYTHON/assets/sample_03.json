@@ -1,0 +1,470 @@
+[
+  {
+    "user": {
+      "id": 1,
+      "name": "User 1",
+      "email": "user1@example.com",
+      "active": false,
+      "age": 40,
+      "location": {
+        "city": "Chennai",
+        "pin": 960544
+      },
+      "skills": [
+        "JavaScript",
+        "Go",
+        "Python",
+        "R"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "planned"
+        },
+        {
+          "name": "Project 2",
+          "status": "completed"
+        },
+        {
+          "name": "Project 3",
+          "status": "planned"
+        },
+        {
+          "name": "Project 4",
+          "status": "planned"
+        },
+        {
+          "name": "Project 5",
+          "status": "ongoing"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2019
+      },
+      "preferences": {
+        "newsletter": false,
+        "sms_alerts": false,
+        "dark_mode": false
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 2,
+      "name": "User 2",
+      "email": "user2@example.com",
+      "active": true,
+      "age": 43,
+      "location": {
+        "city": "Delhi",
+        "pin": 214619
+      },
+      "skills": [
+        "R",
+        "Python",
+        "JavaScript",
+        "SQL"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 2",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 3",
+          "status": "planned"
+        },
+        {
+          "name": "Project 4",
+          "status": "completed"
+        },
+        {
+          "name": "Project 5",
+          "status": "ongoing"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2019
+      },
+      "preferences": {
+        "newsletter": true,
+        "sms_alerts": true,
+        "dark_mode": false
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 3,
+      "name": "User 3",
+      "email": "user3@example.com",
+      "active": false,
+      "age": 57,
+      "location": {
+        "city": "Chennai",
+        "pin": 487932
+      },
+      "skills": [
+        "Python",
+        "SQL",
+        "Java",
+        "R"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "completed"
+        },
+        {
+          "name": "Project 2",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 3",
+          "status": "completed"
+        },
+        {
+          "name": "Project 4",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 5",
+          "status": "ongoing"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2021
+      },
+      "preferences": {
+        "newsletter": true,
+        "sms_alerts": false,
+        "dark_mode": true
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 4,
+      "name": "User 4",
+      "email": "user4@example.com",
+      "active": true,
+      "age": 28,
+      "location": {
+        "city": "Chennai",
+        "pin": 131704
+      },
+      "skills": [
+        "SQL",
+        "Go",
+        "Python",
+        "JavaScript"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 2",
+          "status": "completed"
+        },
+        {
+          "name": "Project 3",
+          "status": "completed"
+        },
+        {
+          "name": "Project 4",
+          "status": "planned"
+        },
+        {
+          "name": "Project 5",
+          "status": "planned"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2020
+      },
+      "preferences": {
+        "newsletter": true,
+        "sms_alerts": false,
+        "dark_mode": false
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 5,
+      "name": "User 5",
+      "email": "user5@example.com",
+      "active": false,
+      "age": 47,
+      "location": {
+        "city": "Chennai",
+        "pin": 968638
+      },
+      "skills": [
+        "Python",
+        "Go",
+        "Rust",
+        "JavaScript"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 2",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 3",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 4",
+          "status": "planned"
+        },
+        {
+          "name": "Project 5",
+          "status": "planned"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2024
+      },
+      "preferences": {
+        "newsletter": false,
+        "sms_alerts": false,
+        "dark_mode": false
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 6,
+      "name": "User 6",
+      "email": "user6@example.com",
+      "active": true,
+      "age": 40,
+      "location": {
+        "city": "Bangalore",
+        "pin": 516206
+      },
+      "skills": [
+        "R",
+        "Java",
+        "SQL",
+        "Rust"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "planned"
+        },
+        {
+          "name": "Project 2",
+          "status": "planned"
+        },
+        {
+          "name": "Project 3",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 4",
+          "status": "planned"
+        },
+        {
+          "name": "Project 5",
+          "status": "ongoing"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2025
+      },
+      "preferences": {
+        "newsletter": false,
+        "sms_alerts": false,
+        "dark_mode": false
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 7,
+      "name": "User 7",
+      "email": "user7@example.com",
+      "active": false,
+      "age": 30,
+      "location": {
+        "city": "Mumbai",
+        "pin": 732737
+      },
+      "skills": [
+        "R",
+        "Python",
+        "Java",
+        "SQL"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "completed"
+        },
+        {
+          "name": "Project 2",
+          "status": "completed"
+        },
+        {
+          "name": "Project 3",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 4",
+          "status": "planned"
+        },
+        {
+          "name": "Project 5",
+          "status": "planned"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2020
+      },
+      "preferences": {
+        "newsletter": true,
+        "sms_alerts": true,
+        "dark_mode": true
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 8,
+      "name": "User 8",
+      "email": "user8@example.com",
+      "active": true,
+      "age": 40,
+      "location": {
+        "city": "Delhi",
+        "pin": 313386
+      },
+      "skills": [
+        "Java",
+        "R",
+        "Rust",
+        "Go"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "planned"
+        },
+        {
+          "name": "Project 2",
+          "status": "planned"
+        },
+        {
+          "name": "Project 3",
+          "status": "planned"
+        },
+        {
+          "name": "Project 4",
+          "status": "ongoing"
+        },
+        {
+          "name": "Project 5",
+          "status": "completed"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2019
+      },
+      "preferences": {
+        "newsletter": true,
+        "sms_alerts": false,
+        "dark_mode": true
+      }
+    }
+  },
+  {
+    "user": {
+      "id": 9,
+      "name": "User 9",
+      "email": "user9@example.com",
+      "active": false,
+      "age": 58,
+      "location": {
+        "city": "Bangalore",
+        "pin": 124839
+      },
+      "skills": [
+        "R",
+        "JavaScript",
+        "Go",
+        "SQL"
+      ],
+      "projects": [
+        {
+          "name": "Project 1",
+          "status": "completed"
+        },
+        {
+          "name": "Project 2",
+          "status": "planned"
+        },
+        {
+          "name": "Project 3",
+          "status": "planned"
+        },
+        {
+          "name": "Project 4",
+          "status": "completed"
+        },
+        {
+          "name": "Project 5",
+          "status": "completed"
+        }
+      ],
+      "education": {
+        "school": "XYZ High School",
+        "college": "ABC University",
+        "degree": "B.Tech",
+        "year": 2025
+      },
+      "preferences": {
+        "newsletter": true,
+        "sms_alerts": true,
+        "dark_mode": false
+      }
+    }
+  }
+]
