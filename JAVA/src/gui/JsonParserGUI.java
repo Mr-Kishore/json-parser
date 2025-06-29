@@ -16,12 +16,14 @@ import java.util.Map;
 public class JsonParserGUI extends JFrame {
 
     private JTextArea inputArea;
+    private JTextArea parsedJsonArea;
     private JTree jsonTree;
     private JLabel statusLabel;
+    private boolean minifyMode = false;  // toggle state
 
     public JsonParserGUI() {
         setTitle("JSON Parser");
-        setSize(800, 600);
+        setSize(1000, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -59,33 +61,57 @@ public class JsonParserGUI extends JFrame {
             }
         });
 
-        // Output tree
+        // Tree view
         jsonTree = new JTree(new DefaultMutableTreeNode("No data"));
         JScrollPane treeScroll = new JScrollPane(jsonTree);
         treeScroll.setBorder(BorderFactory.createTitledBorder("Parsed JSON Tree"));
 
-        // Buttons panel
+        // Parsed JSON text
+        parsedJsonArea = new JTextArea();
+        parsedJsonArea.setEditable(false);
+        JScrollPane parsedScroll = new JScrollPane(parsedJsonArea);
+        parsedScroll.setBorder(BorderFactory.createTitledBorder("Formatted Output"));
+
+        // Scroll sync between inputArea and parsedJsonArea
+        inputScroll.getVerticalScrollBar().addAdjustmentListener(e -> {
+            parsedScroll.getVerticalScrollBar().setValue(e.getValue());
+        });
+
+        // Parse button
         JButton parseButton = new JButton("Parse");
         parseButton.addActionListener(e -> parseJson());
 
+        // Export button
         JButton exportButton = new JButton("Export to .txt");
         exportButton.addActionListener(e -> exportParsedJson());
 
+        // Minify toggle
+        JButton toggleMinify = new JButton("Toggle Minify");
+        toggleMinify.addActionListener(e -> {
+            minifyMode = !minifyMode;
+            parseJson(); // re-parse and re-format view
+        });
+
+        // Status bar
         statusLabel = new JLabel("Ready.");
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttonPanel.add(parseButton);
         buttonPanel.add(exportButton);
+        buttonPanel.add(toggleMinify);
 
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.add(buttonPanel, BorderLayout.WEST);
         bottomPanel.add(statusLabel, BorderLayout.CENTER);
 
-        // Layout
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, inputScroll, treeScroll);
-        splitPane.setResizeWeight(0.5);
+        // Layout (triple panel)
+        JSplitPane leftSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, inputScroll, treeScroll);
+        leftSplit.setResizeWeight(0.5);
 
-        add(splitPane, BorderLayout.CENTER);
+        JSplitPane mainSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftSplit, parsedScroll);
+        mainSplit.setResizeWeight(0.7);
+
+        add(mainSplit, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
@@ -122,6 +148,13 @@ public class JsonParserGUI extends JFrame {
             DefaultMutableTreeNode root = JsonTreeBuilder.buildTree(parsedJson);
             jsonTree.setModel(new javax.swing.tree.DefaultTreeModel(root));
 
+            // Show formatted or minified JSON
+            if (minifyMode) {
+                parsedJsonArea.setText(toMinifiedJson(parsedJson));
+            } else {
+                parsedJsonArea.setText(toJsonString(parsedJson, 0));
+            }
+
             statusLabel.setText("Parsed successfully.");
         } catch (Exception e) {
             showError("Error: " + e.getMessage());
@@ -137,7 +170,7 @@ public class JsonParserGUI extends JFrame {
             JsonParser parser = new JsonParser(tokens);
             Object parsedJson = parser.parse();
 
-            String formatted = toJsonString(parsedJson, 0);
+            String exportText = minifyMode ? toMinifiedJson(parsedJson) : toJsonString(parsedJson, 0);
 
             JFileChooser chooser = new JFileChooser();
             chooser.setDialogTitle("Export Parsed JSON");
@@ -145,7 +178,7 @@ public class JsonParserGUI extends JFrame {
             int result = chooser.showSaveDialog(this);
 
             if (result == JFileChooser.APPROVE_OPTION) {
-                Files.writeString(chooser.getSelectedFile().toPath(), formatted);
+                Files.writeString(chooser.getSelectedFile().toPath(), exportText);
                 statusLabel.setText("Exported to: " + chooser.getSelectedFile().getName());
             }
 
@@ -186,6 +219,32 @@ public class JsonParserGUI extends JFrame {
         }
 
         return sb.toString();
+    }
+
+    private String toMinifiedJson(Object obj) {
+        if (obj instanceof Map<?, ?> map) {
+            StringBuilder sb = new StringBuilder("{");
+            int count = 0;
+            for (var entry : map.entrySet()) {
+                sb.append("\"").append(entry.getKey()).append("\":")
+                        .append(toMinifiedJson(entry.getValue()));
+                if (++count < map.size()) sb.append(",");
+            }
+            sb.append("}");
+            return sb.toString();
+        } else if (obj instanceof List<?> list) {
+            StringBuilder sb = new StringBuilder("[");
+            for (int i = 0; i < list.size(); i++) {
+                sb.append(toMinifiedJson(list.get(i)));
+                if (i < list.size() - 1) sb.append(",");
+            }
+            sb.append("]");
+            return sb.toString();
+        } else if (obj instanceof String str) {
+            return "\"" + escapeString(str) + "\"";
+        } else {
+            return String.valueOf(obj);
+        }
     }
 
     private String escapeString(String str) {
