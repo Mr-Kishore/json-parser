@@ -7,12 +7,12 @@ public class JsonParserTest {
         String json = """
         {
             "name": "Kishore",
-            "age": 25,
+            "age": 19,
             "languages": ["Java", "Python", "Rust"],
             "active": true,
             "address": {
-                "city": "Chennai",
-                "pin": 600001
+                "city": "Coimbatore",
+                "pin": 641020
             },
             "projects": null
         }
