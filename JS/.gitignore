@@ -1,0 +1,36 @@
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build/output
+dist/
+build/
+*.zip
+
+# Node (if you add Node.js tooling later)
+node_modules/
+package-lock.json
+# Environment files
+.env    
+.env.local
+.env.development    
+.env.test
+.env.production
+# Coverage reports
+coverage/   
+# Temporary files
+tmp/
+# Miscellaneous
+*.bak
+*.swp
+*.tmp
+``
